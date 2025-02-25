@@ -40,8 +40,18 @@ resource "aws_iam_policy" "s3_access" {
     Statement = [
       {
         Effect   = "Allow",
+        Action   = [
+          "s3:CreateBucket",
+          "s3:ListBucket",
+          "s3:GetBucketLocation",
+          "s3:PutBucketTagging"
+        ],
+        Resource = "arn:aws:s3:::my-github-actions-bucket"
+      },
+      {
+        Effect   = "Allow",
         Action   = ["s3:*"],
-        Resource = ["arn:aws:s3:::my-github-actions-bucket"]
+        Resource = "arn:aws:s3:::my-github-actions-bucket/*"
       }
     ]
   })
