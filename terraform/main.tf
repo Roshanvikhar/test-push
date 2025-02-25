@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_iam_openid_connect_provider" "github" {
   url             = "https://token.actions.githubusercontent.com"
   client_id_list  = ["sts.amazonaws.com"]
-  thumbprint_list = ["ffffffffffffffffffffffffffffffffffffffff"]
+  thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
 }
 
 resource "aws_iam_role" "github_actions" {
@@ -23,7 +23,7 @@ resource "aws_iam_role" "github_actions" {
       "Action": "sts:AssumeRoleWithWebIdentity",
       "Condition": {
         "StringLike": {
-          "token.actions.githubusercontent.com:sub": "repo:Roshanvikhar/PUSH-S3:*"
+          "token.actions.githubusercontent.com:sub": "repo:Roshanvikhar/test-push:*"
         }
       }
     }
