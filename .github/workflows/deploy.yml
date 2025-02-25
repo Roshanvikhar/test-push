@@ -30,4 +30,4 @@ jobs:
       - name: Upload text file
         run: |
           echo "are you copying my file" > sample.txt
-          aws s3 cp sample.txt s3://my-github-actions-bucket/sample.txt
+          aws s3 cp sample.txt s3://my-github-actions-bucket/
