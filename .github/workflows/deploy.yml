@@ -1,0 +1,33 @@
+name: Deploy to AWS S3
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::615299761831:role/GitHubActionsOIDCRole
+          role-session-name: GitHubActionsSession
+          aws-region: us-east-1
+
+      - name: Create S3 bucket (if not exists)
+        run: |
+          aws s3api create-bucket --bucket my-github-actions-bucket --region us-east-1 || true
+
+      - name: Upload text file
+        run: |
+          echo "This is simple txt file" > sample.txt
+          aws s3 cp sample.txt s3://my-github-actions-bucket/sample.txt
