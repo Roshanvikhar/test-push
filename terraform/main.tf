@@ -41,7 +41,7 @@ resource "aws_iam_policy" "s3_access" {
       {
         Effect   = "Allow",
         Action   = ["s3:*"],
-        Resource = ["arn:aws:s3:::my-github-actions-bucket/*"]
+        Resource = ["arn:aws:s3:::my-github-actions-bucket"]
       }
     ]
   })
