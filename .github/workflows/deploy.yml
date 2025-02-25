@@ -29,5 +29,5 @@ jobs:
 
       - name: Upload text file
         run: |
-          echo "This is simple txt file" > sample.txt
+          echo "WO WO WO WO WO" > sample.txt
           aws s3 cp sample.txt s3://my-github-actions-bucket/sample.txt
